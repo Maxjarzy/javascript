@@ -1,4 +1,4 @@
-//alert("Hola")
+
 
 let cuotas;
 let operacion;
@@ -27,10 +27,11 @@ class gastoNuevo {
 
 
 do{
-    gasto = Number(prompt("Ingrese monto del gasto"));
-    if(gasto === ""){
-        gasto = 0;
-    }
+    do {
+        gasto = Number(prompt("Ingrese monto del gasto"));
+    } while (gasto === 0);
+    
+   
     cuotas = Number(prompt("Ingrese la opción correspondiente: \n 1 --> 1 Cuota \n 2 --> 2 Cuotas \n 3 --> 3 Cuotas \n 6 --> 6 Cuotas \n 12 --> 12 Cuotas"));
 
     if(cuotas === 0){
@@ -41,44 +42,44 @@ do{
     fechaDeCompra = fecha.getMonth();
     localDeCompra = prompt("¿Dónde realizó la compra?").toUpperCase();
 
-switch(fechaDeCompra){
-    case 0:
-        fechaDeCompra = "Enero";
-        break;
-    case 1:
-        fechaDeCompra = "Febrero";
-        break;
-    case 2:
-        fechaDeCompra = "Marzo";
-        break;
-    case 3:
-        fechaDeCompra = "Abril";
-        break;
-    case 4:
-        fechaDeCompra = "Mayo";
-        break;
-    case 5:
-        fechaDeCompra = "Junio";
-        break;
-    case 6:
-        fechaDeCompra = "Julio";
-        break;
-    case 7:
-        fechaDeCompra = "Agosto";
-        break;
-    case 8:
-        fechaDeCompra = "Septiembre";
-        break;
-    case 9:
-        fechaDeCompra = "Octubre";
-        break;
-    case 10:
-        fechaDeCompra = "Noviembre";
-        break;
-    case 11:
-        fechaDeCompra = "Diciembre";
-        break;
-}
+    switch(fechaDeCompra){
+        case 0:
+            fechaDeCompra = "Enero";
+            break;
+        case 1:
+            fechaDeCompra = "Febrero";
+            break;
+        case 2:
+            fechaDeCompra = "Marzo";
+            break;
+        case 3:
+            fechaDeCompra = "Abril";
+            break;
+        case 4:
+            fechaDeCompra = "Mayo";
+            break;
+        case 5:
+            fechaDeCompra = "Junio";
+            break;
+        case 6:
+            fechaDeCompra = "Julio";
+            break;
+        case 7:
+            fechaDeCompra = "Agosto";
+            break;
+        case 8:
+            fechaDeCompra = "Septiembre";
+            break;
+        case 9:
+            fechaDeCompra = "Octubre";
+            break;
+        case 10:
+            fechaDeCompra = "Noviembre";
+            break;
+        case 11:
+            fechaDeCompra = "Diciembre";
+            break;
+    }
 
 let compra = new gastoNuevo(gasto, cuotas, fechaDeCompra, localDeCompra);
 
@@ -86,6 +87,7 @@ let compra = new gastoNuevo(gasto, cuotas, fechaDeCompra, localDeCompra);
     operacion = prompt('Para ingresar mas datos presione "+", para terminar la carga ingrese "="');
 
     gastosTotales.push(compra);
+    
 
     switch (cuotas) {
         case 1:
@@ -179,6 +181,7 @@ let compra = new gastoNuevo(gasto, cuotas, fechaDeCompra, localDeCompra);
     document.write("En la tercera cuota vas a pagar: $" + montoTresCuotas.toFixed(2) + "<br>");
     document.write("Desde la cuarta hasta la sexta cuota vas a pagar: $" + montoSeisCuotas.toFixed(2) + "<br>");
     document.write("Desde la séptima hasta deuodécima cuota vas a pagar: $" + montoDoceCuotas.toFixed(2) + "<br>");
+
 
 
 const arrayGastosUnaCuota = gastosTotales.filter((nuevoGasto) => nuevoGasto.cantidadCuotas == 1);
