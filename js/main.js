@@ -11,9 +11,18 @@ let montoSeisCuotas = 0;
 let montoDoceCuotas = 0;
 let montoErroneo = 0;
 
-let montoCuota = function(gasto, cuotas){
-    return gasto / cuotas;
+let gastosTotales = [];
 
+class gastoNuevo {
+    constructor(gasto, cuotas, mes, localDeCompra){
+        this.importe = gasto;
+        this.cantidadCuotas = cuotas;
+        this.mesDeCompra = mes;
+        this.dondeCompro = localDeCompra;
+    }
+    getCuota(){
+        return this.importe/ this.cantidadCuotas;
+    }
 }
 
 
@@ -28,10 +37,55 @@ do{
         cuotas = Number(prompt("La opción seleccionada no es correcta. Ingrese nuevamente: \n 1 --> 1 Cuota \n 2 --> 2 Cuotas \n 3 --> 3 Cuotas \n 6 --> 6 Cuotas \n 12 --> 12 Cuotas"));
     }
 
-    //document.write('<p style=" color: red; font-size: 40px;">' + cuotas + "</p>")
+    let fecha = new Date ();
+    fechaDeCompra = fecha.getMonth();
+    localDeCompra = prompt("¿Dónde realizó la compra?").toUpperCase();
+
+switch(fechaDeCompra){
+    case 0:
+        fechaDeCompra = "Enero";
+        break;
+    case 1:
+        fechaDeCompra = "Febrero";
+        break;
+    case 2:
+        fechaDeCompra = "Marzo";
+        break;
+    case 3:
+        fechaDeCompra = "Abril";
+        break;
+    case 4:
+        fechaDeCompra = "Mayo";
+        break;
+    case 5:
+        fechaDeCompra = "Junio";
+        break;
+    case 6:
+        fechaDeCompra = "Julio";
+        break;
+    case 7:
+        fechaDeCompra = "Agosto";
+        break;
+    case 8:
+        fechaDeCompra = "Septiembre";
+        break;
+    case 9:
+        fechaDeCompra = "Octubre";
+        break;
+    case 10:
+        fechaDeCompra = "Noviembre";
+        break;
+    case 11:
+        fechaDeCompra = "Diciembre";
+        break;
+}
+
+let compra = new gastoNuevo(gasto, cuotas, fechaDeCompra, localDeCompra);
+
+
     operacion = prompt('Para ingresar mas datos presione "+", para terminar la carga ingrese "="');
 
-        
+    gastosTotales.push(compra);
 
     switch (cuotas) {
         case 1:
@@ -42,11 +96,11 @@ do{
         case 2:
             document.write("<br>")
             for(let i = 1; i <= 2; i += 1){
-                document.write("$" + montoCuota(gasto, cuotas).toFixed(2) + " ");
+                document.write("$" + compra.getCuota().toFixed(2) + " ");
                 if(i == 1){
-                    montoUnaCuota += montoCuota(gasto, cuotas);
+                    montoUnaCuota += compra.getCuota();
             }else{
-                montoDosCuotas += montoCuota(gasto, cuotas)
+                montoDosCuotas += compra.getCuota()
             }
         }   
             document.write("<br>")
@@ -54,13 +108,13 @@ do{
         case 3:
             document.write("<br>")
             for(let i = 1; i <= 3; i += 1){
-                document.write("$" + montoCuota(gasto, cuotas).toFixed(2) + " ");
+                document.write("$" + compra.getCuota().toFixed(2) + " ");
                 if(i == 1){
-                    montoUnaCuota += montoCuota(gasto, cuotas);
+                    montoUnaCuota += compra.getCuota();
             }else if(i == 2){
-                montoDosCuotas += montoCuota(gasto, cuotas)
+                montoDosCuotas += compra.getCuota()
             }else{
-                montoTresCuotas += montoCuota(gasto, cuotas);
+                montoTresCuotas += compra.getCuota();
             }
             }
             document.write("<br>")
@@ -68,19 +122,19 @@ do{
         case 6:
             document.write("<br>")
             for(let i = 1; i <= 6; i += 1){
-                document.write("$" + montoCuota(gasto, cuotas).toFixed(2) + " ");
+                document.write("$" + compra.getCuota().toFixed(2) + " ");
                 switch(i){
                     case 1:
-                        montoUnaCuota += montoCuota(gasto, cuotas);
+                        montoUnaCuota += compra.getCuota();
                         break;
                     case 2:
-                        montoDosCuotas += montoCuota(gasto, cuotas);
+                        montoDosCuotas += compra.getCuota();
                         break;
                     case 3:
-                        montoTresCuotas += montoCuota(gasto, cuotas);
+                        montoTresCuotas += compra.getCuota();
                         break;
                     case 6:
-                        montoSeisCuotas += montoCuota(gasto, cuotas);
+                        montoSeisCuotas += compra.getCuota();
                         break;
                 }
             }
@@ -89,22 +143,22 @@ do{
         case 12:
             document.write("<br>")
             for(let i = 1; i <= 12; i += 1){
-                document.write("$" + montoCuota(gasto, cuotas).toFixed(2) + " ");
+                document.write("$" + compra.getCuota().toFixed(2) + " ");
                 switch(i){
                     case 1:
-                        montoUnaCuota += montoCuota(gasto, cuotas);
+                        montoUnaCuota += compra.getCuota();
                         break;
                     case 2:
-                        montoDosCuotas += montoCuota(gasto, cuotas);
+                        montoDosCuotas += compra.getCuota();
                         break;
                     case 3:
-                        montoTresCuotas += montoCuota(gasto, cuotas);
+                        montoTresCuotas += compra.getCuota();
                         break;
                     case 6:
-                        montoSeisCuotas += montoCuota(gasto, cuotas);
+                        montoSeisCuotas += compra.getCuota();
                         break;
                     case 12:
-                        montoDoceCuotas += montoCuota(gasto, cuotas);
+                        montoDoceCuotas += compra.getCuota();
                         break;
                 }
             }
@@ -125,3 +179,40 @@ do{
     document.write("En la tercera cuota vas a pagar: $" + montoTresCuotas.toFixed(2) + "<br>");
     document.write("Desde la cuarta hasta la sexta cuota vas a pagar: $" + montoSeisCuotas.toFixed(2) + "<br>");
     document.write("Desde la séptima hasta deuodécima cuota vas a pagar: $" + montoDoceCuotas.toFixed(2) + "<br>");
+
+
+const arrayGastosUnaCuota = gastosTotales.filter((nuevoGasto) => nuevoGasto.cantidadCuotas == 1);
+const arrayGastosDosCuotas = gastosTotales.filter((nuevoGasto) => nuevoGasto.cantidadCuotas == 2);
+const arrayGastosTresCuotas = gastosTotales.filter((nuevoGasto) => nuevoGasto.cantidadCuotas == 3);
+const arrayGastosSeisCuotas = gastosTotales.filter((nuevoGasto) => nuevoGasto.cantidadCuotas == 6);
+const arrayGastosDoceCuotas = gastosTotales.filter((nuevoGasto) => nuevoGasto.cantidadCuotas == 12);
+
+
+
+function imprimirArray(gastos){
+    for(let gasto of gastos){
+        document.write("Importe: "+ gasto.importe + "<br>");
+        document.write("Cantidad de cuotas: " + gasto.cantidadCuotas + "<br>");
+        document.write("Importe cuota: " + gasto.getCuota() + "<br>")    ;
+        document.write("Mes de compra: " + gasto.mesDeCompra + "<br>");
+        document.write("Lugar de compra: " + gasto.dondeCompro + "<br>");
+        document.write("---------------- <br>")
+
+    }
+    } 
+
+document.write("-------------------------------------------------------------------------------- <br>")
+document.write("Gastos en una cuota:" + "<br>");
+imprimirArray(arrayGastosUnaCuota);
+document.write("-------------------------------------------------------------------------------- <br>") 
+document.write("Gasos en dos cuotas:" + "<br>");
+imprimirArray(arrayGastosDosCuotas);
+document.write("-------------------------------------------------------------------------------- <br>")
+document.write("Gasos en tres cuotas:" + "<br>");
+imprimirArray(arrayGastosTresCuotas);
+document.write("-------------------------------------------------------------------------------- <br>")
+document.write("Gasos en seis cuotas:" + "<br>");
+imprimirArray(arrayGastosSeisCuotas);
+document.write("-------------------------------------------------------------------------------- <br>")
+document.write("Gasos en doce cuotas:" + "<br>");
+imprimirArray(arrayGastosDoceCuotas); 
