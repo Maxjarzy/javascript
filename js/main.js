@@ -29,6 +29,9 @@ class gastoNuevo {
 do{
     do {
         gasto = Number(prompt("Ingrese monto del gasto"));
+        if(gasto == 0){
+            alert("El importe no puede ser 0")
+        }
     } while (gasto === 0);
     
    
